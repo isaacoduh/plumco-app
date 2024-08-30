@@ -27,7 +27,7 @@ function AuthLogin() {
   }
 
   return (
-    <div className="mx-auto lg:w-1/4 sm:w-full mt-20 max-w-d space-y-6">
+    <div className="mx-auto lg:w-2/4 sm:w-full mt-20 max-w-d space-y-6">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">
           Sign into your account
