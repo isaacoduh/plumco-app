@@ -19,6 +19,12 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@/components/ui/use-toast";
 import { useNavigate } from "react-router-dom";
+import {
+  fetchAllFilteredProducts,
+  fetchProductDetails,
+} from "@/store/shop/productSlice";
+import ShopProductTile from "@/components/shop/productTile";
+import ProductDetailsDialog from "@/components/shop/productDetails";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -42,12 +48,39 @@ function ShopHome() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
+  const { productList, productDetails } = useSelector(
+    (state) => state.shopProducts
+  );
+
+  const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
+
+  const { user } = useSelector((state) => state.auth);
+
+  function handleGetProductDetails(getCurrentProductId) {
+    dispatch(fetchProductDetails(getCurrentProductId));
+  }
+
+  function handleAddToCart() {}
+
   function handleNavigateToListingPage(getCurrentItem, section) {
     sessionStorage.removeItem("filters");
     const currentFilter = { [section]: [getCurrentItem.id] };
     sessionStorage.setItem("filters", JSON.stringify(currentFilter));
     navigate(`/shop/listing`);
   }
+
+  useEffect(() => {
+    if (productDetails !== null) setOpenDetailsDialog(true);
+  }, [productDetails]);
+
+  useEffect(() => {
+    dispatch(
+      fetchAllFilteredProducts({
+        filterParams: {},
+        sortParams: "price-lowtohigh",
+      })
+    );
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -100,9 +133,25 @@ function ShopHome() {
           <h2 className="text-3xl font-bold text-center mb-8">
             Feature Products
           </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {productList && productList.length > 0
+              ? productList.map((productItem) => (
+                  <ShopProductTile
+                    handleGetProductDetails={handleGetProductDetails}
+                    product={productItem}
+                    handleAddToCart={handleAddToCart}
+                  />
+                ))
+              : null}
+          </div>
         </div>
       </section>
       {/* Product Details */}
+      <ProductDetailsDialog
+        open={openDetailsDialog}
+        setOpen={setOpenDetailsDialog}
+        productDetails={productDetails}
+      />
     </div>
   );
 }
