@@ -111,7 +111,7 @@ function HeaderRightContent() {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>
-            <LogOut className="mr-2 h-4 w-4" /> Account
+            <LogOut className="mr-2 h-4 w-4" /> Logout
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
