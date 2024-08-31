@@ -7,6 +7,7 @@ import ShopLayout from "./components/shop/layout";
 import { Skeleton } from "./components/ui/skeleton";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
+import ShopAccount from "./pages/shop/account";
 import ShopHome from "./pages/shop/home";
 import { checkAuth } from "./store/authSlice";
 
@@ -56,6 +57,7 @@ function App() {
           }
         >
           <Route path="home" element={<ShopHome />}></Route>
+          <Route path="account" element={<ShopAccount />}></Route>
         </Route>
       </Routes>
     </div>
