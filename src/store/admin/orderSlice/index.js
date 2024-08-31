@@ -33,7 +33,7 @@ export const updateOrderStatus = createAsyncThunk(
   "/order/updateOrderStatus",
   async ({ id, orderStatus }) => {
     const response = await axios.put(
-      `${BASE_API_URL}/orders/update/${id}`,
+      `${BASE_API_URL}/admin/orders/update/${id}`,
       { orderStatus },
       { withCredentials: true }
     );

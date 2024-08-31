@@ -7,6 +7,7 @@ import CheckAuth from "./components/shared/checkAuth";
 import ShopLayout from "./components/shop/layout";
 import { Skeleton } from "./components/ui/skeleton";
 import AdminDashboard from "./pages/admin/dashboard";
+import AdminOrders from "./pages/admin/orders";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import ShopAccount from "./pages/shop/account";
@@ -59,6 +60,7 @@ function App() {
           }
         >
           <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="orders" element={<AdminOrders />} />
         </Route>
         <Route
           path="/shop"
