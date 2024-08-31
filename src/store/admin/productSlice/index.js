@@ -23,7 +23,9 @@ export const addNewProduct = createAsyncThunk(
 export const fetchAllProducts = createAsyncThunk(
   "/products/fetchAllProducts",
   async () => {
-    const response = await axios.get(`${BASE_API_URL}/admin/products`);
+    const response = await axios.get(`${BASE_API_URL}/admin/products`, {
+      withCredentials: true,
+    });
     return response?.data;
   }
 );
@@ -54,7 +56,7 @@ export const deleteProduct = createAsyncThunk(
 );
 
 const AdminProductsSlice = createSlice({
-  name: "adminProductd",
+  name: "adminProducts",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
