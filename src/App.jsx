@@ -1,10 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes } from "react-router-dom";
+import AdminLayout from "./components/admin/layout";
 import AuthLayout from "./components/auth/layout";
 import CheckAuth from "./components/shared/checkAuth";
 import ShopLayout from "./components/shop/layout";
 import { Skeleton } from "./components/ui/skeleton";
+import AdminDashboard from "./pages/admin/dashboard";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import ShopAccount from "./pages/shop/account";
@@ -47,6 +49,16 @@ function App() {
         >
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
+        </Route>
+        <Route
+          path="/admin"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <AdminLayout />
+            </CheckAuth>
+          }
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
         </Route>
         <Route
           path="/shop"
