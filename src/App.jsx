@@ -11,6 +11,7 @@ import AdminOrders from "./pages/admin/orders";
 import AdminProducts from "./pages/admin/products";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
+import NotFound from "./pages/not-found";
 import ShopAccount from "./pages/shop/account";
 import ShopCheckout from "./pages/shop/checkout";
 import ShopHome from "./pages/shop/home";
@@ -18,6 +19,7 @@ import ShopListing from "./pages/shop/listing";
 import PaymentSuccessPage from "./pages/shop/payment-success";
 import PaypalReturnPage from "./pages/shop/paypal-return";
 import SearchProducts from "./pages/shop/search";
+import UnauthPage from "./pages/unauth-page";
 import { checkAuth } from "./store/authSlice";
 
 function App() {
@@ -85,6 +87,8 @@ function App() {
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
         </Route>
+        <Route path="/unauth-page" element={<UnauthPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
