@@ -19,7 +19,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-  // const { cartItems } = useSelector((state) => state.shopCart);
+  const { cartItems } = useSelector((state) => state.shopCart);
   // const { reviews } = useSelector((state) => state.shopReview);
 
   const { toast } = useToast();

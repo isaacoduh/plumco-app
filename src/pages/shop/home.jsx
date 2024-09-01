@@ -25,6 +25,7 @@ import {
 } from "@/store/shop/productSlice";
 import ShopProductTile from "@/components/shop/productTile";
 import ProductDetailsDialog from "@/components/shop/productDetails";
+import { addToCart, fetchCartItems } from "@/store/shop/cartSlice";
 
 const categoriesWithIcon = [
   { id: "men", label: "Men", icon: ShirtIcon },
@@ -60,7 +61,22 @@ function ShopHome() {
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
-  function handleAddToCart() {}
+  function handleAddtoCart(getCurrentProductId) {
+    dispatch(
+      addToCart({
+        userId: user?.id,
+        productId: getCurrentProductId,
+        quantity: 1,
+      })
+    ).then((data) => {
+      if (data?.payload?.success) {
+        dispatch(fetchCartItems(user?.id));
+        toast({
+          title: "Product is added to cart",
+        });
+      }
+    });
+  }
 
   function handleNavigateToListingPage(getCurrentItem, section) {
     sessionStorage.removeItem("filters");
@@ -139,7 +155,7 @@ function ShopHome() {
                   <ShopProductTile
                     handleGetProductDetails={handleGetProductDetails}
                     product={productItem}
-                    handleAddToCart={handleAddToCart}
+                    handleAddToCart={handleAddtoCart}
                   />
                 ))
               : null}

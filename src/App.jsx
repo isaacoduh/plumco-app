@@ -12,7 +12,11 @@ import AdminProducts from "./pages/admin/products";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import ShopAccount from "./pages/shop/account";
+import ShopCheckout from "./pages/shop/checkout";
 import ShopHome from "./pages/shop/home";
+import ShopListing from "./pages/shop/listing";
+import PaymentSuccessPage from "./pages/shop/payment-success";
+import PaypalReturnPage from "./pages/shop/paypal-return";
 import { checkAuth } from "./store/authSlice";
 
 function App() {
@@ -73,7 +77,12 @@ function App() {
           }
         >
           <Route path="home" element={<ShopHome />}></Route>
+          <Route path="listing" element={<ShopListing />} />
           <Route path="account" element={<ShopAccount />}></Route>
+          <Route path="checkout" element={<ShopCheckout />} />
+          <Route path="paypal-return" element={<PaypalReturnPage />} />
+          <Route path="payment-success" element={<PaymentSuccessPage />} />
+          {/* <Route path="search" element={<SearchProducts />} /> */}
         </Route>
       </Routes>
     </div>
