@@ -17,6 +17,7 @@ import ShopHome from "./pages/shop/home";
 import ShopListing from "./pages/shop/listing";
 import PaymentSuccessPage from "./pages/shop/payment-success";
 import PaypalReturnPage from "./pages/shop/paypal-return";
+import SearchProducts from "./pages/shop/search";
 import { checkAuth } from "./store/authSlice";
 
 function App() {
@@ -82,7 +83,7 @@ function App() {
           <Route path="checkout" element={<ShopCheckout />} />
           <Route path="paypal-return" element={<PaypalReturnPage />} />
           <Route path="payment-success" element={<PaymentSuccessPage />} />
-          {/* <Route path="search" element={<SearchProducts />} /> */}
+          <Route path="search" element={<SearchProducts />} />
         </Route>
       </Routes>
     </div>
